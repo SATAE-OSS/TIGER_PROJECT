@@ -11,7 +11,7 @@ body {
   background-size: cover;
   flex-direction: column;
 }
-.job{
+.job {
   color: azure;
 }
 .container {
@@ -37,52 +37,51 @@ p {
     font-size: 14px;
   }
 }
-.home{
-    /* border: 3px solid rgb(239, 230, 230); */
-    box-shadow: 0px 0px 30px rgb(207, 214, 217);
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 200px;
-    color: white;
-
+.home {
+  /* border: 3px solid rgb(239, 230, 230); */
+  box-shadow: 0px 0px 30px rgb(207, 214, 217);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+  color: white;
 }
 
-#b{
-    background: linear-gradient(145deg,#f0e6d2,#e4d5b7);
-    border: none;
-    border-radius: 25px;
-    padding: 12px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
-    -5px -5px 10px rgba(255,255,255,0.8);
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    text-align: center;
-    display: inline-block;
-    width: 150px;
-    margin: 7px;
+#b {
+  background: linear-gradient(145deg, #f0e6d2, #e4d5b7);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
+    -5px -5px 10px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  width: 150px;
+  margin: 7px;
 }
-.title{
+.title {
   font-size: 40px;
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
-@media only screen and (min-width: 250px) and (max-width: 770px) {
-  .title{
+@media only screen and (min-width: 300px) and (max-width: 770px) {
+  .title {
     font-size: 25px;
     font-weight: bold;
     color: white;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   }
-  #b{
-    background: linear-gradient(145deg,#f0e6d2,#e4d5b7);
+  #b {
+    background: linear-gradient(145deg, #f0e6d2, #e4d5b7);
     border: none;
     border-radius: 25px;
     padding: 12px 20px;
@@ -90,12 +89,19 @@ p {
     font-weight: bold;
     color: #333;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
-    -5px -5px 10px rgba(255,255,255,0.8);
+      -5px -5px 10px rgba(255, 255, 255, 0.8);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     text-align: center;
     display: inline-block;
     width: 150px;
     margin: 7px;
+  }
+  body {
+    background-image: url(bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    background-position: -340px;
   }
 }
