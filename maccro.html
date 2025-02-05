@@ -1,301 +1,339 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ใบสั่งสินค้า</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            background: white;
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-        input {
-            width: 60px;
-            padding: 5px;
-            text-align: center;
-        }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-        .btn-back {
-            background-color: #dc3545;
-            color: white;
-        }
-        .btn-back:hover {
-            background-color: #c82333;
-        }
-        .btn-generate {
-            background-color: #28a745;
-            color: white;
-        }
-        .btn-generate:hover {
-            background-color: #218838;
-        }
-        .bill {
-            margin-top: 20px;
-            text-align: left;
-        }
-        .accordion {
-            background-color: #007BFF;
-            color: white;
-            cursor: pointer;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 18px;
-        }
-        .accordion:hover {
-            background-color: #0056b3;
-        }
-        .panel {
-            padding: 0 18px;
-            display: none;
-            overflow: hidden;
-            background-color: #f1f1f1;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+      }
+      .container {
+        max-width: 600px;
+        background: white;
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #007bff;
+        color: white;
+      }
+      input {
+        width: 60px;
+        padding: 5px;
+        text-align: center;
+      }
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+      .btn-back {
+        background-color: #dc3545;
+        color: white;
+      }
+      .btn-back:hover {
+        background-color: #c82333;
+      }
+      .btn-generate {
+        background-color: #28a745;
+        color: white;
+      }
+      .btn-generate:hover {
+        background-color: #218838;
+      }
+      .bill {
+        margin-top: 20px;
+        text-align: left;
+      }
+      .accordion {
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 18px;
+      }
+      .accordion:hover {
+        background-color: #0056b3;
+      }
+      .panel {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <button class="btn btn-back" onclick="goHome()">⬅ กลับหน้าแรก</button>
-        <h2>ใบสั่งสินค้า</h2>
-        
-        <!-- Accordion for Product Categories -->
-        <button class="accordion">กลุ่มสินค้า 1 (อาหารทะเล, เนื้อสัตว์, ของแปรรูป)</button>
-        <div class="panel">
-            <table id="product-list-1"></table>
-        </div>
+      <button class="btn btn-back" onclick="goHome()">⬅ กลับหน้าแรก</button>
+      <h2>ใบสั่งสินค้า</h2>
 
-        <button class="accordion">กลุ่มสินค้า 2 (ผัก)</button>
-        <div class="panel">
-            <table id="product-list-2"></table>
-        </div>
+      <!-- Accordion for Product Categories -->
+      <button class="accordion">
+        กลุ่มสินค้า 1 (อาหารทะเล, เนื้อสัตว์, ของแปรรูป)
+      </button>
+      <div class="panel">
+        <table id="product-list-1"></table>
+      </div>
 
-        <button class="accordion">กลุ่มสินค้า 3 (ไข่, น้ำมัน, ซอสต่างๆ)</button>
-        <div class="panel">
-            <table id="product-list-3"></table>
-        </div>
+      <button class="accordion">กลุ่มสินค้า 2 (ผัก)</button>
+      <div class="panel">
+        <table id="product-list-2"></table>
+      </div>
 
-        <button class="btn btn-generate" onclick="generateBill()">📜 สร้างใบสั่งซื้อ</button>
-        <div id="bill" class="bill"></div>
+      <button class="accordion">กลุ่มสินค้า 3 (ไข่, น้ำมัน, ซอสต่างๆ)</button>
+      <div class="panel">
+        <table id="product-list-3"></table>
+      </div>
+
+      <button class="btn btn-generate" onclick="generateBill()">
+        📜 สร้างใบสั่งซื้อ
+      </button>
+      <div id="bill" class="bill"></div>
     </div>
 
     <script>
-        const productsGroup1 = [
-            { name: "กุ้งขาว", unit: "ตัว" },
-            { name: "ข้าวเกรียบมโนรา", unit: "ถุง" },
-            { name: "ข้าวโพด", unit: "ฝัก" },
-            { name: "ปลาดอลลี่", unit: "ถุง" },
-            { name: "ปลาหมึก", unit: "กิโล" },
-            { name: "กระดูกอ่อน", unit: "กิโล" },
-            { name: "คอหมู", unit: "กิโล" },
-            { name: "หมูบด", unit: "กิโล" },
-            { name: "พอร์คชอป", unit: "ชิ้น" },
-            { name: "หมู (สันในสไลด์)", unit: "กิโล" },
-            { name: "สามชั้น", unit: "กิโล" },
-            { name: "หอยลาย", unit: "ถุง" },
-            { name: "หอยแมลงภู่", unit: "ถุง" },
-            { name: "เนื้อ AU พิคานย่า MB2+", unit: "กิโล" },
-            { name: "เนื้อบด", unit: "กิโล" },
-            { name: "เฟรนฟราย Finest", unit: "ถุง" },
-            { name: "แซลมอนนอเวย์(แล่ไม่ลอกหนัง)", unit: "ตัว" },
-            { name: "ปีกกลางไก่", unit: "ชิ้น" },
-            { name: "สะโพกไก่", unit: "ชิ้น" },
-            { name: "อกไก่", unit: "ชิ้น" },
-            { name: "สันในไก่", unit: "ชิ้น" },
-            { name: "เอ็นไก่", unit: "ถุง" }
-        ];
+              const productsGroup1 = [
+                  { name: "กุ้งขาว", unit: "ตัว" },
+                  { name: "ข้าวเกรียบมโนรา", unit: "ถุง" },
+                  { name: "ปลาดอลลี่", unit: "ถุง" },
+                  { name: "ปลาหมึก", unit: "กิโล" },
+                  { name: "กระดูกอ่อน", unit: "กิโล" },
+                  { name: "คอหมู", unit: "กิโล" },
+                  { name: "หมูบด", unit: "กิโล" },
+                  { name: "หมู (สันในสไลด์)", unit: "กิโล" },
+                  { name: "สามชั้น", unit: "กิโล" },
+                  { name: "หอยลาย", unit: "ถุง" },
+                  { name: "หอยแมลงภู่ เอโร่", unit: "ถุง" },
+                  { name: "เนื้อ AU พิคานย่า MB2+", unit: "กิโล" },
+                  { name: "เนื้อบด", unit: "กิโล" },
+                  { name: "เฟรนฟราย Finest", unit: "ถุง" },
+                  { name: "แซลมอนนอเวย์(แล่ไม่ลอกหนัง)", unit: "ตัว" },
+                  { name: "ปีกกลางไก่", unit: "ชิ้น" },
+                  { name: "สะโพกไก่", unit: "ชิ้น" },
+                  { name: "อกไก่", unit: "ชิ้น" },
+                  { name: "สันในไก่", unit: "ชิ้น" },
+                  { name : "ไส้กรอกหมูรมควัน(BMP 1000g)" , unit: "แพ็ค"},
+                  { name : "CHUNKY TRIANGULAR ฮัชบาร์ว (Farmfrites)" , unit: "ถุง"},
+                  { name : "นักเก็ตไก่" , unit: "ถุง"},
+                  { name : "ไข่ปลาแซลมอน อิกูระ" , unit: "แพ็ค"},
+                  { name : "พ็อคชอป CP" , unit: "ชิ้น"},
+                  { name: "เอ็นไก่", unit: "ถุง" },
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""}
+              ];
 
-        const productsGroup2 = [
-            { name: "เรดคอรัล", unit: "กล่อง" },
-            { name: "โรสแมรี่", unit: "กล่อง" },
-            { name: "พริก3สี", unit: "แพ็ค" },
-            { name: "หอมหัวใหญ่", unit:"กิโล"}
-        ];
-        // { name : "" , unit: ""},
-        // { name : "" , unit: ""},
-        const productsGroup3 = [
-            { name: "ไข่ไก่ เบอร์ 2", unit: "แผง" },
-            { name : "แป้งทอดกรอบ" , unit: "ถุง"},
-            { name : "วิปครีม มิลค์เลค" , unit: "กล่อง"},
-            { name : "งาขาว 500 กรัม" , unit: "แพ็ค"},
-            { name : "เกล็ดขนมปัง" , unit: "แพ็ค"},
-            { name : "พริกเผา ฉั่วะ ฮะ เส็ง 900 กรัม" , unit: "กระปุก"},
-            { name : "นํ้าปลา ทิพรส" , unit: "แกลอน"},
-            { name : "ผงปรุงรสชีส เอโร่" , unit: "ถุง"},
-            { name : "ผงชูรส อายิโนะโมโต๊ะ 1000 กรัม" , unit: "ถุง"},
-            { name : "รสดี รสหมู 900 กรัม" , unit: "ถุง"},
-            { name : "ถั่วลิสงดิบ เต็มเม็ด 500 กร้ม" , unit: "ถุง"},
-            { name: "วุ้นเส้น กิเลน 1000 กรัม", unit: "แพ็ค" },
-            { name : "เส้นมาม่า นู๊ดดี้" , unit: "แพ็ค"},
-            { name: "เส้นสปาเก็ตตี้ AGNESI เบอร์.3", unit: "แพ็ค" },
-            { name: "เส้นเฟตตูชินี่ AGNESI 500g", unit: "แพ็ค" },
-            { name : "นํ้าตาลมะพร้าว" , unit: "แพ็ค"},
-            { name : "นํ้ามะขามเปียก เอโร่" , unit: "ถุง"},
-            { name : "เม็ดมะม่วง 800 กรัม" , unit: "แพ็ค"},
-            { name: "น้ำมันปาล์ม(มรกตหรือโบนัส)", unit: "ปิ๊บ" },
-            { name: "พริกแห้งเด็ดก้าน 500 กรัม", unit: "แพ็ค" },
-            { name: "เนยจืด", unit: "ก้อน" },
-            { name: "นํ้าสลัดครีมวาซาบิ เบสฟู๊ด", unit: "ถุง" },
-            { name: "นํ้าสลัดครีม เบสฟู๊ด", unit: "ถุง" },
-            { name: "ซอสมะเขือเทศ โรซ่า", unit: "ถุง" },
-            { name: "มายองเนส", unit: "ถุง" },
-            { name: "มัสตาร์ด", unit: "ถุง" },
-            { name : "Cheesy Dip รสหัวหอมและชีส" , unit: "ถุง"},
-            { name : "ซอสพริก โรซ่า" , unit: "ถุง"},
-            { name : "นํ้าจิ้มไก่" , unit: "ถุง"},
-            { name : "ซอสเทริยากิ เอโร่" , unit: "ขวด"},
-            { name : "ซอสทงคัตสึ เอโร่" , unit: "ขวด"},
-            { name : "ผงพาเมซานชีส Granted Parmesan Cheese 454g" , unit: "กระปุก"},
-            { name : "นมข้นจืด คาเน่ชั่นแบบกระป๋อง" , unit: "แพ็ค"},
-            { name : "ขิงสามรส ตร้าต้นไผ่(สีขมพู)" , unit: "แพ็ค"},
-            { name : "" , unit: ""},
-            { name : "" , unit: ""},
-            { name : "ข้าวหอมมะลิ เบญจรงค์ 5 ลิตร" , unit: "ถุง"}
-        ];
+              const productsGroup2 = [
+                  { name: "เรดคอรัล", unit: "กล่อง" },
+                  { name: "ข้าวโพด", unit: "ฝัก" },
+                  { name: "โรสแมรี่", unit: "กล่อง" },
+                  { name: "พริก3สี", unit: "แพ็ค" },
+                  { name : "พาสลีย์สด" , unit: "กล่อง"},
+                  { name : "เห็ดชิเมจิ สีนํ้าตาล(150g)" , unit: "แพ็ค"},
+                  { name : "ยอดอ่อนทานตะวัน" , unit: "แพ็ค"},
+                  { name : "มะเขือเทศราชินี" , unit: "ถุง"},
+                  { name : "ผักคอส" , unit: "ถุง"},
+                  { name : "ผักบัตเตอร์เฮด" , unit: "ถุง"},
+                  { name : "มะเขือเทศท้อ" , unit: "กิโล"},
+                  { name : "ตะไคร้" , unit: "ถุง"},
+                  { name : "ข่าอ่อน" , unit: "กรัม"},
+                  { name : "ใบมะกรูด" , unit: "ถุง"},
+                  { name : "หัวไชเท้า" , unit: "หัว"},
+                  { name : "โหระพา" , unit: "ถุง"},
+                  { name : "กะเพรา" , unit: "ถุง"},
+                  { name : "ขึ้นฉ่าย" , unit: "ถุง"},
+                  { name : "ผักชี" , unit: "ถุง"},
+                  { name : "กระเทียมจีน ปลอกเปลือก" , unit: "ถุง"},
+                  { name : "พริกจินดา เขียว" , unit: "ถุง"},
+                  { name : "พริกจินดา แดง" , unit: "ถุง"},
+                  { name : "หอมแขก" , unit: "กิโล"},
+                  { name: "หอมหัวใหญ่", unit:"กิโล"},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""}
+                  
+              ];
+              // { name : "" , unit: ""},
+              // { name : "" , unit: ""},
+              const productsGroup3 = [
+                  { name: "ไข่ไก่ เบอร์ 2", unit: "แผง" },
+                  { name : "แป้งทอดกรอบ" , unit: "ถุง"},
+                  { name : "วิปครีม มิลค์เลค" , unit: "กล่อง"},
+                  { name : "งาขาว 500 กรัม" , unit: "แพ็ค"},
+                  { name : "เกล็ดขนมปัง" , unit: "แพ็ค"},
+                  { name : "พริกเผา ฉั่วะ ฮะ เส็ง 900 กรัม" , unit: "กระปุก"},
+                  { name : "นํ้าปลา ทิพรส" , unit: "แกลอน"},
+                  { name : "ผงปรุงรสชีส เอโร่" , unit: "ถุง"},
+                  { name : "ผงชูรส อายิโนะโมโต๊ะ 1000 กรัม" , unit: "ถุง"},
+                  { name : "รสดี รสหมู 900 กรัม" , unit: "ถุง"},
+                  { name : "ถั่วลิสงดิบ เต็มเม็ด 500 กร้ม" , unit: "ถุง"},
+                  { name: "วุ้นเส้น กิเลน 1000 กรัม", unit: "แพ็ค" },
+                  { name : "เส้นมาม่า นู๊ดดี้" , unit: "แพ็ค"},
+                  { name: "เส้นสปาเก็ตตี้ AGNESI เบอร์.3", unit: "แพ็ค" },
+                  { name: "เส้นเฟตตูชินี่ AGNESI 500g", unit: "แพ็ค" },
+                  { name : "นํ้าตาลมะพร้าว" , unit: "แพ็ค"},
+                  { name : "นํ้ามะขามเปียก เอโร่" , unit: "ถุง"},
+                  { name : "เม็ดมะม่วง 800 กรัม" , unit: "แพ็ค"},
+                  { name: "น้ำมันปาล์ม(มรกตหรือโบนัส)", unit: "ปิ๊บ" },
+                  { name: "พริกแห้งเด็ดก้าน 500 กรัม", unit: "แพ็ค" },
+                  { name: "เนยจืด", unit: "ก้อน" },
+                  { name: "นํ้าสลัดครีมวาซาบิ เบสฟู๊ด", unit: "ถุง" },
+                  { name: "นํ้าสลัดครีม เบสฟู๊ด", unit: "ถุง" },
+                  { name: "ซอสมะเขือเทศ โรซ่า", unit: "ถุง" },
+                  { name: "มายองเนส", unit: "ถุง" },
+                  { name: "มัสตาร์ด", unit: "ถุง" },
+                  { name : "Cheesy Dip รสหัวหอมและชีส" , unit: "ถุง"},
+                  { name : "ซอสพริก โรซ่า" , unit: "ถุง"},
+                  { name : "นํ้าจิ้มไก่" , unit: "ถุง"},
+                  { name : "ซอสเทริยากิ เอโร่" , unit: "ขวด"},
+                  { name : "ซอสทงคัตสึ เอโร่" , unit: "ขวด"},
+                  { name : "ผงพาเมซานชีส Granted Parmesan Cheese 454g" , unit: "กระปุก"},
+                  { name : "นมข้นจืด คาเน่ชั่นแบบกระป๋อง" , unit: "แพ็ค"},
+                  { name : "ขิงสามรส ตร้าต้นไผ่(สีขมพู)" , unit: "แพ็ค"},
+                  { name : "ข้าวหอมมะลิ เบญจรงค์ 5 ลิตร" , unit: "ถุง"},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""},
+                  { name : "" , unit: ""}
+              ];
 
-        // Function to populate product tables
-        function populateProductTable(group, tableId) {
-            const table = document.getElementById(tableId);
-            let tableContent = `
-                <thead>
-                    <tr>
-                        <th>สินค้า</th>
-                        <th>จำนวน</th>
-                        <th>หน่วย</th>
-                    </tr>
-                </thead>
-                <tbody>
-            `;
+              // Function to populate product tables
+              function populateProductTable(group, tableId) {
+                  const table = document.getElementById(tableId);
+                  let tableContent = `
+                      <thead>
+                          <tr>
+                              <th>สินค้า</th>
+                              <th>จำนวน</th>
+                              <th>หน่วย</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                  `;
 
-            group.forEach((product, index) => {
-                tableContent += `
-                    <tr>
-                        <td>${product.name}</td>
-                        <td><input type="number" id="product-${tableId}-${index}" min="0" value=""></td>
-                        <td>${product.unit}</td>
-                    </tr>
-                `;
-            });
+                  group.forEach((product, index) => {
+                      tableContent += `
+                          <tr>
+                              <td>${product.name}</td>
+                              <td><input type="number" id="product-${tableId}-${index}" min="0" value=""></td>
+                              <td>${product.unit}</td>
+                          </tr>
+                      `;
+                  });
 
-            tableContent += `</tbody>`;
-            table.innerHTML = tableContent;
-        }
+                  tableContent += `</tbody>`;
+                  table.innerHTML = tableContent;
+              }
 
-        // Initialize product tables
-        populateProductTable(productsGroup1, "product-list-1");
-        populateProductTable(productsGroup2, "product-list-2");
-        populateProductTable(productsGroup3, "product-list-3");
+              // Initialize product tables
+              populateProductTable(productsGroup1, "product-list-1");
+              populateProductTable(productsGroup2, "product-list-2");
+              populateProductTable(productsGroup3, "product-list-3");
 
-        // Accordion functionality
-        const accordions = document.querySelectorAll(".accordion");
-        accordions.forEach(acc => {
-            acc.addEventListener("click", function() {
-                this.classList.toggle("active");
-                const panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        });
+              // Accordion functionality
+              const accordions = document.querySelectorAll(".accordion");
+              accordions.forEach(acc => {
+                  acc.addEventListener("click", function() {
+                      this.classList.toggle("active");
+                      const panel = this.nextElementSibling;
+                      if (panel.style.display === "block") {
+                          panel.style.display = "none";
+                      } else {
+                          panel.style.display = "block";
+                      }
+                  });
+              });
 
-        function generateBill() {
-    let today = new Date();
-    let formattedDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + (today.getFullYear() + 543); // เปลี่ยนเป็น พ.ศ.
+              function generateBill() {
+          let today = new Date();
+          let formattedDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + (today.getFullYear() + 543); // เปลี่ยนเป็น พ.ศ.
 
-    let billContent = `<h3>รายการแม็คโคร ${formattedDate}</h3><br>`;
-    let totalItems = 0;
-    let itemsGroup1 = [];
-    let itemsGroup2 = [];
-    let itemsGroup3 = [];
+          let billContent = `<h3>รายการแม็คโคร ${formattedDate}</h3><br>`;
+          let totalItems = 0;
+          let itemsGroup1 = [];
+          let itemsGroup2 = [];
+          let itemsGroup3 = [];
 
-    // Collect quantities from each product group
-    productsGroup1.forEach((product, index) => {
-        let quantity = document.getElementById(`product-product-list-1-${index}`).value;
-        if (quantity > 0) {
-            itemsGroup1.push(`- ${product.name} = ${quantity} ${product.unit}`);
-            totalItems++;
-        }
-    });
+          // Collect quantities from each product group
+          productsGroup1.forEach((product, index) => {
+              let quantity = document.getElementById(`product-product-list-1-${index}`).value;
+              if (quantity > 0) {
+                  itemsGroup1.push(`- ${product.name} = ${quantity} ${product.unit}`);
+                  totalItems++;
+              }
+          });
 
-    productsGroup2.forEach((product, index) => {
-        let quantity = document.getElementById(`product-product-list-2-${index}`).value;
-        if (quantity > 0) {
-            itemsGroup2.push(`- ${product.name} = ${quantity} ${product.unit}`);
-            totalItems++;
-        }
-    });
+          productsGroup2.forEach((product, index) => {
+              let quantity = document.getElementById(`product-product-list-2-${index}`).value;
+              if (quantity > 0) {
+                  itemsGroup2.push(`- ${product.name} = ${quantity} ${product.unit}`);
+                  totalItems++;
+              }
+          });
 
-    productsGroup3.forEach((product, index) => {
-        let quantity = document.getElementById(`product-product-list-3-${index}`).value;
-        if (quantity > 0) {
-            itemsGroup3.push(`- ${product.name} = ${quantity} ${product.unit}`);
-            totalItems++;
-        }
-    });
+          productsGroup3.forEach((product, index) => {
+              let quantity = document.getElementById(`product-product-list-3-${index}`).value;
+              if (quantity > 0) {
+                  itemsGroup3.push(`- ${product.name} = ${quantity} ${product.unit}`);
+                  totalItems++;
+              }
+          });
 
-    // Add items to bill content with line breaks between groups
-    if (itemsGroup1.length > 0) {
-        billContent += `${itemsGroup1.join("<br>")}<br><br>`;
-    }
-    if (itemsGroup2.length > 0) {
-        billContent += `${itemsGroup2.join("<br>")}<br><br>`;
-    }
-    if (itemsGroup3.length > 0) {
-        billContent += `${itemsGroup3.join("<br>")}<br><br>`;
-    }
+          // Add items to bill content with line breaks between groups
+          if (itemsGroup1.length > 0) {
+              billContent += `${itemsGroup1.join("<br>")}<br><br>`;
+          }
+          if (itemsGroup2.length > 0) {
+              billContent += `${itemsGroup2.join("<br>")}<br><br>`;
+          }
+          if (itemsGroup3.length > 0) {
+              billContent += `${itemsGroup3.join("<br>")}<br><br>`;
+          }
 
-    billContent += `<p><strong>รวมทั้งหมด ${totalItems} รายการ</strong></p>`;
-    document.getElementById("bill").innerHTML = billContent;
-}
-
-
-
-billContent += items.join("<br>") + "<hr>";
-billContent += `<p><strong>รวมทั้งหมด ${totalItems} รายการ</strong></p>`;
-document.getElementById("bill").innerHTML = billContent;
+          billContent += `<p><strong>รวมทั้งหมด ${totalItems} รายการ</strong></p>`;
+          document.getElementById("bill").innerHTML = billContent;
+      }
 
 
-// Go back to homepage function
-function goHome() {
-window.location.href = "index.html"; // กลับไปหน้า Home.html
-}
-</script>
 
-</body>
+      billContent += items.join("<br>") + "<hr>";
+      billContent += `<p><strong>รวมทั้งหมด ${totalItems} รายการ</strong></p>`;
+      document.getElementById("bill").innerHTML = billContent;
+
+
+      // Go back to homepage function
+      function goHome() {
+      window.location.href = "index.html"; // กลับไปหน้า Home.html
+      }
+    </script>
+  </body>
 </html>
